@@ -1,14 +1,15 @@
 class Tabelas {
 
-    init (conexao) {
+    init(conexao) {
         console.log('Tabelas foram chamadas');
         this.conexao = conexao;
         this.criarAtendimentos()
+        this.criarPets();
     }
 
     criarAtendimentos() {
         const sql = 'CREATE TABLE Atendimentos ('
-            +  'id int NOT NULL AUTO_INCREMENT, '
+            + 'id int NOT NULL AUTO_INCREMENT, '
             + 'cliente varchar(50) NOT NULL, '
             + 'pet varchar(20), '
             + 'servico varchar(20) NOT NULL, '
@@ -26,6 +27,18 @@ class Tabelas {
                 console.log('Tabela de Atendimentos criada com sucesso!')
             }
 
+        });
+    }
+
+    criarPets() {
+        const query = 'CREATE TABLE IF NOT EXISTS Pets(id int NOT NULL AUTO_INCREMENT, nome varchar(50), imagem varchar(200) PRIMARY KEY (id))';
+
+        this.conexao.query(query, erro => {
+            if (erro) {
+                console.log(erro)
+            } else {
+                console.log('Tabela Pets foi criada com sucesso');
+            }
         });
     }
 
