@@ -5,10 +5,10 @@ const Tabelas = require('./infraestrutura/tabelas');
 conexao.connect(
     erro => {
 
-        if (!!erro) {
-            console.log('Deu erro na conexão com o banco: ' + erro);
+        if (erro) {
+            console.log(erro);
         } else {
-            console.log('Conectado com sucesso');
+            console.log('Conectado com  sucesso!!');
             Tabelas.init(conexao);
             const app = customExpress();
 
